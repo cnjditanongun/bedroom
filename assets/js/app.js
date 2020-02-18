@@ -15,7 +15,7 @@ function init(){
      new THREE.BoxGeometry(2,0,3),
      new THREE.MeshPhongMaterial({map: bedTexture, wireframe:USE_WIREFRAME})
   );
-  meshBed.position.y =0.5;
+  meshBed.position.y =0.9;
   meshBed.position.x =3.7;
   meshBed.position.z =3.5;
   // The cube can have shadows cast onto it, and it can cast shadows
@@ -30,7 +30,7 @@ function init(){
    new THREE.BoxGeometry(2,0,3),
    new THREE.MeshPhongMaterial({map: bedFrameTexture, wireframe:USE_WIREFRAME})
    );
-   meshBedFrame.position.y =0;
+   meshBedFrame.position.y =0.5;
    meshBedFrame.position.x =3.7;
    meshBedFrame.position.z =3.5;
    // The cube can have shadows cast onto it, and it can cast shadows
@@ -49,83 +49,172 @@ function init(){
    meshFloor.receiveShadow = true;
    scene.add(meshFloor);
 
-   //Front bed wall
-   const widthFrontBedWall = 10;
-   const heightFrontBedWall = 8;
-   const depthFrontBedWall = 1;
-   const frontBedWallGeometry = new THREE.BoxBufferGeometry(widthFrontBedWall, heightFrontBedWall, depthFrontBedWall);
 
-   let frontBedWallMaterial= new THREE.MeshPhongMaterial( {color: 0xff4444} );
+   //Front bed wall
+   const widthFrontBedWall = 0;
+   const heightFrontBedWall = 6;
+   const depthFrontBedWall = 10;
+   const frontBedWallGeometry = new THREE.BoxBufferGeometry(widthFrontBedWall, heightFrontBedWall, depthFrontBedWall);
+   
+   let forntBedWallTexture = new THREE.TextureLoader().load( 'assets/textures/wall.jpg' );
+   let frontBedWallMaterial = new THREE.MeshBasicMaterial( {map: forntBedWallTexture} );
    let frontBedWall = new THREE.Mesh( frontBedWallGeometry, frontBedWallMaterial );
-   frontBedWall.position.set(0,3,-5);
+   frontBedWall.position.set(5.5,3,0);
+   frontBedWall.receiveShadow = true;
+   frontBedWall.castShadow = true;
    scene.add( frontBedWall );
+
 
    //back Bed Wall
    const widthBackBedWall = 10;
-   const heightBackBedWall = 8;
-   const depthBackBedWall = 1;
+   const heightBackBedWall = 6;
+   const depthBackBedWall = 0;
    const backBedWallGeometry = new THREE.BoxBufferGeometry(widthBackBedWall, heightBackBedWall, depthBackBedWall);
-
-   let backBedWallMaterial= new THREE.MeshPhongMaterial( {color: 0xff4444} );
+   
+   let backBedWallTexture = new THREE.TextureLoader().load( 'assets/textures/wall.jpg' );
+   let backBedWallMaterial = new THREE.MeshBasicMaterial( {map: backBedWallTexture} );
    let backBedWall = new THREE.Mesh( backBedWallGeometry, backBedWallMaterial );
    backBedWall.position.set(0,3,5.5);
+   backBedWall.receiveShadow = true;
+   backBedWall.castShadow = true;
    scene.add( backBedWall );
 
 
-   //Wallbot
-   const widthBotWall = 1;
-   const heighBotWall = 3;
-   const depthBotWall = 22;
-   const botWallGeometry = new THREE.BoxBufferGeometry(widthBotWall, heighBotWall, depthBotWall);
-
-   let botWallMaterial= new THREE.MeshPhongMaterial( {color: 0xff4444} );
-   let botWall = new THREE.Mesh( botWallGeometry, botWallMaterial );
-   botWall.position.set(-5,1,5.5);
-   scene.add( botWall );
-
-
-   //Wallmid
-   const widthMidWall = 1;
-   const heighMidWall = 8;
-   const depthMidWall = 2;
-   const midWallGeometry = new THREE.BoxBufferGeometry(widthMidWall, heighMidWall, depthMidWall);
-
-   let midWallMaterial= new THREE.MeshPhongMaterial( {color: 0xff4444} );
-   let midWall = new THREE.Mesh( midWallGeometry, midWallMaterial );
-   midWall.position.set(-5,3.3,0);
-   scene.add( midWall );
+   //right wall left part
+   const rightLeftPartWallwidth = 0;
+   const rightLeftPartallheight = 6;
+   const rightLeftPartWalldepthB = 4;
+   const rightLeftPartWallGeometry = new THREE.BoxBufferGeometry(rightLeftPartWallwidth, rightLeftPartallheight, rightLeftPartWalldepthB);
+   
+   let rightLeftParTexture = new THREE.TextureLoader().load( 'assets/textures/wall.jpg' );
+   let rightLeftPartWallMaterial = new THREE.MeshBasicMaterial( {map: rightLeftParTexture} );
+   let rightLeftPartWall = new THREE.Mesh( rightLeftPartWallGeometry, rightLeftPartWallMaterial );
+   rightLeftPartWall.position.set(-5.5,3,3);
+   scene.add( rightLeftPartWall );
 
 
-   //WallUp
-   const widthtUpWall = 1;
-   const heighUpWall = 1;
-   const depthUpWall = 22;
-   const botUpGeometry = new THREE.BoxBufferGeometry(widthtUpWall, heighUpWall, depthUpWall);
+   //right wall right part
+   const rightRightPartWallwidth = 0;
+   const rightRightPartWallheight = 6;
+   const rightRightPartWalldepthB = 3;
+   const rightRightPartWallGeometry = new THREE.BoxBufferGeometry(rightRightPartWallwidth, rightRightPartWallheight, rightRightPartWalldepthB);
+   
+   let rightRightParTexture = new THREE.TextureLoader().load( 'assets/textures/wall.jpg' );
+   let rightRighttPartWallMaterial = new THREE.MeshBasicMaterial( {map: rightRightParTexture} );
+   let rightRightPartWall = new THREE.Mesh( rightRightPartWallGeometry, rightRighttPartWallMaterial );
+   rightRightPartWall.position.set(-5.5,3,-3.5);
+   rightRightPartWall.receiveShadow = true;
+   rightRightPartWall.castShadow = true;
+   scene.add( rightRightPartWall );
 
-   let upWallMaterial= new THREE.MeshPhongMaterial( {color: 0xff4444} );
-   let upWall = new THREE.Mesh( botUpGeometry, upWallMaterial );
-   upWall.position.set(-5,6,5.5);
-   scene.add( upWall );
+
+   //right wall upper part
+   const rightUpperPartWallwidth = 0;
+   const rightUpperPartWallheight = 2;
+   const rightUpperPartWalldepthB = 3;
+   const rightUpperPartWallGeometry = new THREE.BoxBufferGeometry(rightUpperPartWallwidth, rightUpperPartWallheight, rightUpperPartWalldepthB);
+
+   let rightUpperPartTexture = new THREE.TextureLoader().load( 'assets/textures/wall.jpg' );
+   let rightUpperPartWallMaterial = new THREE.MeshBasicMaterial( {map: rightUpperPartTexture} );
+   let rightUpperPartWall = new THREE.Mesh( rightUpperPartWallGeometry, rightUpperPartWallMaterial );
+   rightUpperPartWall.position.set(-5.5,5,-0.5);
+   rightUpperPartWall.receiveShadow = true;
+   rightUpperPartWall.castShadow = true;
+   scene.add( rightUpperPartWall );
 
 
-   //Roof
-   const widthtRoof = 15;
-   const heighUpoof = 3;
-   const depthUpWoof = 20;
-   const rootpGeometry = new THREE.BoxBufferGeometry(widthtRoof, heighUpoof, depthUpWoof);
+   //bedCabinet
+   const bedCabinetWidth = 0;
+   const bedCabinetHeight = 1.5;
+   const bedCabinetDepthB = 1;
+   const bedCabinetGeometry = new THREE.BoxBufferGeometry(bedCabinetWidth, bedCabinetHeight, bedCabinetDepthB);
 
-   let roofMaterial= new THREE.MeshPhongMaterial( {color: 0xff4444} );
-   let roof = new THREE.Mesh( rootpGeometry, roofMaterial );
-   roof.position.set(-1,8,4);
+   let bedCabinetTexture = new THREE.TextureLoader().load( 'assets/textures/bedcabinet.jpg' );
+   let bedCabinetMaterial = new THREE.MeshBasicMaterial( {map: bedCabinetTexture} );
+   let bedCabinet = new THREE.Mesh( bedCabinetGeometry, bedCabinetMaterial );
+   bedCabinet.position.set(2,0.8,4.5);
+   scene.add( bedCabinet );
+
+
+   //Dresser
+   const cabinetWidth = 4;
+   const cabinetHeight = 4;
+   const cabinetDepthB = 0;
+   const cabinetGeometry = new THREE.BoxBufferGeometry(cabinetWidth, cabinetHeight, cabinetDepthB);
+
+   let cabinetTexture = new THREE.TextureLoader().load( 'assets/textures/cabinet.png' );
+   let cabinetMaterial = new THREE.MeshBasicMaterial( {map: cabinetTexture} );
+   let cabinet = new THREE.Mesh( cabinetGeometry, cabinetMaterial );
+   cabinet.receiveShadow = true;
+   cabinet.castShadow = true;
+   cabinet.position.set(-3,2,4.5);
+   scene.add( cabinet );
+
+
+   //door
+   doorTexture = new THREE.TextureLoader().load( 'assets/textures/door.jpg' );
+   door = new THREE.Mesh(
+       new THREE.PlaneBufferGeometry(3,4,2,2),
+       new THREE.MeshPhongMaterial({map:doorTexture})
+   )
+   door.position.x = -4.5;
+   door.position.y = 2;
+   door.position.z = -1 ;
+   door.rotation.y = 90;
+   door.receiveShadow = true;
+   door.castShadow = true;
+   scene.add(door);
+
+
+   //Window Left
+   const windowLeftRadius = 0;
+   const windowLeftTubeRadius = 0.1;
+   const windowrLeftRadialSegments = 0;
+   const windowtLeftTubularSegments = 0;
+   const windowLeftGeometry = new THREE.TorusBufferGeometry(windowLeftRadius, windowLeftTubeRadius, windowrLeftRadialSegments, windowtLeftTubularSegments);
+
+   let windowlLeftMaterial= new THREE.MeshPhongMaterial( {color: 0xff4444} );
+   let windowLeft = new THREE.Mesh( windowLeftGeometry, windowlLeftMaterial );
+   windowLeft.receiveShadow = true;
+   windowLeft.castShadow = true;
+   windowLeft.position.set(2,3,-5);
+   scene.add( windowLeft );
+
+
+   //Window Right
+   const windowRightRadius = 0;
+   const windowRightTubeRadius = 0.1;
+   const windowrRightRadialSegments = 0;
+   const windowtRightTubularSegments = 0;
+   const windowRightGeometry = new THREE.TorusBufferGeometry(windowRightRadius, windowRightTubeRadius, windowrRightRadialSegments, windowtRightTubularSegments);
+
+   let windowlRightMaterial= new THREE.MeshPhongMaterial( {color: 0xff4444} );
+   let windowRight = new THREE.Mesh( windowRightGeometry, windowlRightMaterial );
+   windowRight.receiveShadow = true;
+   windowRight.castShadow = true;
+   windowRight.position.set(-2,3,-5);
+   scene.add( windowRight );
+
+
+   //roof
+   const widthRoof = 10;
+   const heightRoof = 0;
+   const depthRoof = 11;
+   const roofGeometry = new THREE.BoxBufferGeometry(widthRoof, heightRoof, depthRoof);
+   
+   let roofTexture = new THREE.TextureLoader().load( 'assets/textures/roof.jpg' );
+   let roofMaterial = new THREE.MeshBasicMaterial( {map: roofTexture} );
+   let roof = new THREE.Mesh( roofGeometry, roofMaterial );
+   roof.position.set(0,6.5,0);
    scene.add( roof );
- 
- 
+
+
   // LIGHTS
-  ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
+  ambientLight = new THREE.AmbientLight(0xffffff, 0.);
   scene.add(ambientLight);
  
-  light = new THREE.PointLight(0xffffff, 5, 30);
-  light.position.set(-15,10,5.5);
+  light = new THREE.PointLight(0xffffff, 1, 25);
+  light.position.set(0,5,-10);
   light.castShadow = true;
   // Will not light anything closer than 0.1 units or further than 25 units
   light.shadow.camera.near = 0.1;
